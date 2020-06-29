@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:news_app/constant.dart';
+import 'package:news_app/widgets/onLocationTapNewsList.dart';
 import 'package:news_app/widgets/onTapLocation.dart';
 
 import 'package:news_app/widgets/sources.dart';
@@ -11,12 +13,24 @@ class NewsScreen extends StatefulWidget {
 }
 
 class NewsScreenState extends State<NewsScreen> {
-  Set<Marker> _markers={};
+  Set<Marker> _markers=  {};
+//    Marker(
+//    markerId: MarkerId(IND_COORD.toString()),
+//    position: IND_COORD,
+//    infoWindow: InfoWindow(
+//      title: 'India',
+//    ),
+//    onTap: ()=>{
+//      Navigator.push(context, MaterialPageRoute(builder: (context)=>LocationNewsList(Address: "India",)))
+//    },
+//    icon:
+//    BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueMagenta),)
+//  };
   Completer<GoogleMapController> _controller = Completer();
 
 
   static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
+    target: LatLng(22.43,78.14),
   );
 
 
@@ -36,14 +50,35 @@ class NewsScreenState extends State<NewsScreen> {
             )
           ],
         ),
-      body: GoogleMap(
-        markers: _markers,
-        mapType: MapType.normal,
-        initialCameraPosition: _kGooglePlex,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
-        onTap: _handleTap,
+      body: Container(
+        color: Colors.black12,
+        padding: EdgeInsets.only(top:20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text("Mark on Map to View News of that Area"),
+            Center(
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 5
+                  )
+                ),
+                height: MediaQuery.of(context).size.height*0.75,
+                child: GoogleMap(
+                  markers: _markers,
+                  mapType: MapType.normal,
+                  initialCameraPosition: _kGooglePlex,
+                  onMapCreated: (GoogleMapController controller) {
+                    _controller.complete(controller);
+                  },
+                  onTap: _handleTap,
+                ),
+              ),
+            ),
+          ],
+        ),
       )
     );
   }

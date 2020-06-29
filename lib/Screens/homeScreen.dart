@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/widgets/categoryCard.dart';
 import 'package:news_app/widgets/sources.dart';
 
 class HomeScreen  extends StatefulWidget {
@@ -23,8 +24,29 @@ class _HomeScreenState extends State<HomeScreen>{
           )
         ],
       ),
-      body: Center(
-        child: Text("HomePage"),
+      body: Container(
+        color: Colors.black12,
+        padding: EdgeInsets.fromLTRB(15, 15, 15, 0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              CategoryCard(name: "entertainment.webp",heading: "Entertainment",),
+              Divider(),
+              CategoryCard(name:"business.jpg",heading: "Business",),
+              Divider(),
+              CategoryCard(name:"general.png",heading: "General",),
+              Divider(),
+              CategoryCard(name: "health.jpg",heading: "Health",),
+              Divider(),
+              CategoryCard(name: "science.png",heading: "Science",),
+              Divider(),
+              CategoryCard(name: "sports.jpg",heading: "Sports",),
+              Divider(),
+              CategoryCard(name:"technology.jpeg",heading: "Technology",)
+              
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -4,6 +4,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:news_app/constant.dart';
+import 'package:news_app/widgets/onLocationTapNewsList.dart';
 
 class OnTapLocation extends StatefulWidget{
   LatLng cood;
@@ -23,20 +24,27 @@ class _OnTapLocationState extends State<OnTapLocation>{
   }
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-        appBar: AppBar(title:Text("News For this location")),
-        body: FutureBuilder<Location>(
+    return Scaffold(
+        body:
+        FutureBuilder<Location>(
           future: post,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return Text(snapshot.data.subDivision);
+              return LocationNewsList(Address: '${snapshot.data.subDivision} , ${snapshot.data.country}',);
             }
             else if (snapshot.hasError) {
               return Text("${snapshot.error}");
             }
 
             // By default, show a loading spinner.
-            return Center(child: CircularProgressIndicator());
+            return Center(child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                CircularProgressIndicator(),
+                SizedBox(height:10),
+                Text("Analyzing Location")
+              ],
+            ));
           },
         )
     );
@@ -58,12 +66,14 @@ Future<Location> fetchPost(LatLng point) async {
 
 class Location {
   var subDivision;
+  var country;
 
-  Location({this.subDivision});
+  Location({this.subDivision,this.country});
 
   factory Location.fromJson(Map<String, dynamic> json) {
     return Location(
       subDivision: json["adminName1"],
+      country: json["countryName"]
     );
   }
 }
