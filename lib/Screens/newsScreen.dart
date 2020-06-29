@@ -3,6 +3,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:news_app/constant.dart';
 import 'package:news_app/widgets/onLocationTapNewsList.dart';
 import 'package:news_app/widgets/onTapLocation.dart';
+import 'package:news_app/widgets/searchPlaces.dart';
 
 import 'package:news_app/widgets/sources.dart';
 import 'dart:async';
@@ -52,11 +53,13 @@ class NewsScreenState extends State<NewsScreen> {
         ),
       body: Container(
         color: Colors.black12,
-        padding: EdgeInsets.only(top:20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
+            SearchField(),
+            SizedBox(height: 10,),
             Text("Mark on Map to View News of that Area"),
+            SizedBox(height: 10,),
             Center(
               child: Container(
                 decoration: BoxDecoration(
@@ -65,7 +68,7 @@ class NewsScreenState extends State<NewsScreen> {
                     width: 5
                   )
                 ),
-                height: MediaQuery.of(context).size.height*0.75,
+                height: MediaQuery.of(context).size.height*0.68,
                 child: GoogleMap(
                   markers: _markers,
                   mapType: MapType.normal,

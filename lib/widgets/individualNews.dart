@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app/widgets/ViewinApp.dart';
 
 class IndividualNews extends StatelessWidget {
   var article;
@@ -10,7 +11,12 @@ class IndividualNews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(splashColor:Colors.deepPurple,onPressed: (){}, label: Text("View Complete")),
+      floatingActionButton: FloatingActionButton.extended(splashColor:Colors.deepPurple,onPressed: (){
+        if(article["url"]!=null)
+          Navigator.push(context,MaterialPageRoute(builder: (BuildContext context){return ViewinApp(link: article['url'],heading: article["title"],);}));
+        else
+          Scaffold.of(context).showSnackBar(SnackBar(content: Text("Missing URL"),));
+        }, label: Text("View Complete")),
       appBar: AppBar(
         title: article["source"]["name"] != "null"
             ? Text(article["source"]["name"])
@@ -61,6 +67,12 @@ class IndividualNews extends StatelessWidget {
 
           ],),
         ),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.deepPurple,
+        child: ListTile(
+          title: Text("Viewing Short Snippet"),
+        ),
+      ),
       );
   }
 }
