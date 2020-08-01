@@ -20,7 +20,7 @@ class NewsCard extends StatelessWidget {
           width: wid,
           height: heit - 30,
           child: Card(
-              color: Colors.white,
+//              color: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(30.0)),
               ),

@@ -34,28 +34,29 @@ class _MainScreenState extends State<MainScreen> {
             currentPage = pages[index];
           });
         },
-        backgroundColor: Color(0xFF007944),
+        backgroundColor: Colors.black,
+//        Color(0xFF007944),
         currentIndex: currentTabIndex,
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.home,
-                color: Colors.black,
+//                color: Colors.black,
               ),
               title: Text(
                 "Home",
-                style: TextStyle(color: Colors.black),
+//                style: TextStyle(color: Colors.black),
               ),
               activeIcon: Icon(Icons.home, color: Color(0xFFdc2f02))),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.search,
-                color: Colors.black,
+//                color: Colors.black,
               ),
               title: Text(
                 "Search",
-                style: TextStyle(color: Colors.black),
+//                style: TextStyle(color: Colors.black),
               ),
               activeIcon: Icon(Icons.search, color: Color(0xFFdc2f02))),
         ],

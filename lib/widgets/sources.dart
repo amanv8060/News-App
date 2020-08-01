@@ -34,7 +34,8 @@ class _SourcePageState extends State<SourcePage>{
                       //todo implement Url Launch
                       title: Text(snapshot.data.sources[index]["name"]),
                     );
-                    }),
+                    }
+                    ),
               );
             }
             else if (snapshot.hasError) {
