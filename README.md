@@ -6,6 +6,8 @@ Screens:
 
 Home Screen:
 
-![](homescreen.gif)
+<img src="homescreen.gif" width="300" height="600">
 
-![](searchScreen.gif)
+Seacrh Screen:
+
+<img src="searchScreen.gif" width="300" height="600">
